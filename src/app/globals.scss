@@ -1,0 +1,22 @@
+@import "../styles/utils/_variables.scss";
+@import "../styles/utils/_mixins.scss";
+
+body {
+    background-color: $gray-light;
+    color: $primary-dark;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    color: $primary-medium;
+  }
+  
+  button {
+    background: linear-gradient(45deg, $accent-start, $accent-end);
+    color: $white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
