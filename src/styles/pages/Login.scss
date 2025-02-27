@@ -5,15 +5,17 @@
   justify-content: center;
   align-items: center;
   height:100vh ;
+
+
   
 
   
   &__container {
     display: flex;
-    width: 96%;
-    height: 96%;
+    width: 98%;
+    height: 98%;
     background: white;
-    border-radius: 20px;
+    border-radius: 40px;
     box-shadow: 0px 10px 30px rgba(0, 3, 21, 0.1);
     overflow: hidden;
     padding:24px;
@@ -25,7 +27,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: white;
+   
+    border-radius: 40px;
+    width: 544px;
+height: 556px;
+  
 
     h2 {
 
@@ -72,39 +78,102 @@
 
   &__right {
     flex: 1;
-    
+    position: relative;
+  }
+
+  &__gradient {
+    position: absolute;
+    inset: 0; // top: 0; right: 0; bottom: 0; left: 0;
+    border-radius: 40px;
+    background: linear-gradient(90.66deg, #6700E9 11.53%, #D83AFF 229.96%);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+ padding: 35px;
+ //filter: drop-shadow(0px 40px 100px rgba(0, 0, 0, 0.3));
+  }
+
+  &__content {
+    // Replaces: "absolute left-16 top-[123px] flex flex-col gap-10 max-w-[651px]"
+    //position: absolute;
+ 
+   // top: 123px;
+   padding-top:20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; // gap-10 => 40px
+    max-width: 651px;
+  }
+
+  &__title {
+    // Typography styles
+    font-size: 36px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
   
-    color: white;
+    // New properties
+    leading-trim: both;
+    text-edge: cap;
+  
+    // Flex properties for auto layout
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+  
 
-    &-container{
-        background: linear-gradient(90.66deg, #6700E9 11.53%, #D83AFF 229.96%);
-        flex: 1;
-    height: 90vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 40px;
-        //padding: 48px;
+  &__description {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #ffffff;
+ 
+    margin: 0;
+  }
+
+  &__image {
+    position: absolute;
+
+    filter: drop-shadow(0px 40px 100px rgba(0, 0, 0, 0.3));
+    background-repeat: no-repeat;
+    background-size: cover;  
+  
+
+
+    &--first {
+   position: relative;
+   aspect-ratio: 550/309; 
+   max-width: 550px;
+      left: 0rem;  
+      top: 112px;
+      width: 100%;
+      height: 100%;
+    
+
+  
     }
 
-    h2 {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 16px;
+    &--second {
+      aspect-ratio: 550/309; 
+      max-width: 550px;
+      position: absolute;
+      left: 140px;
+      top: 240px;
+      width: 100%;
+      height: 100%;
+      // aspect-ratio: 550/309; 
+      // width: 100%;
+      // height: 309px;
+      // left: 258px;
+      // top: 627px;
     }
 
-    p {
-      font-size: 16px;
-      opacity: 0.9;
-    }
-
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-top: 24px;
+    &-el {
+      // Replaces: "rounded-2xl bg-white/90 backdrop-blur-lg"
+      //border-radius: 1rem; // ~ rounded-2xl
+      //backdrop-filter: blur(20px); // ~ backdrop-blur-lg
+      // The width/height is controlled by the <Image> props in the TSX
     }
   }
 }

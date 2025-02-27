@@ -1,0 +1,51 @@
+.countries-page {
+  /* If your Sidebar is pinned (position: fixed; width: 260px),
+     we can offset the content by 260px. */
+  position: relative;
+  min-height: 100vh;
+  background-color: #f9fafb; // ~bg-gray-50
+
+  &__main {
+    /* Equivalent of "flex-1 p-8 ml-[260px]" */
+    margin-left: 260px; /* offset for pinned sidebar width */
+    padding: 2rem;      /* p-8 => 2rem */
+    flex: 1;
+  }
+
+  &__content {
+    /* Equivalent of "max-w-6xl" => 72rem, plus margin auto for centering */
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  &__header {
+    margin-bottom: 2rem; // mb-8
+  }
+
+  &__title {
+    /* text-4xl => ~2.25rem, font-bold => 700 */
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827; // text-gray-900
+    margin: 0;      // remove default <h1> top/bottom margin
+  }
+
+  &__description {
+    margin-top: 0.5rem; // mt-2 => 8px
+    color: #4b5563;     // text-gray-600
+  }
+
+  &__filters {
+    /* Equivalent of "mb-8 flex gap-4" */
+    display: flex;
+    gap: 1rem;         // gap-4 => 16px
+    margin-bottom: 2rem; // mb-8 => 32px
+  }
+}
+
+/* If needed, style the Lucide icon. 
+   For instance, "h-5 w-5 => 20px". */
+.lucide-icon {
+  width: 1.25rem;  // 20px
+  height: 1.25rem; // 20px
+}
