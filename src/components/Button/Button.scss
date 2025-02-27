@@ -1,0 +1,42 @@
+.custom-button {
+    position: relative;
+    width: 100%;
+    max-width: 544px; 
+    height: 66px; 
+    border-radius: 40px; 
+    padding: 12px 32px;
+    background-color: #000315;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    box-shadow: 
+      0px 8px 32px rgba(123, 137, 158, 0.2),
+      0px 4px 8px rgba(123, 137, 158, 0.2),
+      0px 1px 4px rgba(123, 137, 158, 0.2);
+  
+    &:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 40px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    }
+  
+
+  
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 3, 21, 0.2);
+    }
+  
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  

@@ -1,0 +1,58 @@
+.input-field {
+    position: relative;
+    width: 100%;
+  
+    &__input {
+      width: 100%;
+      height: 70px;
+      padding: 12px 16px;
+      background-color: #ffffff;
+      border: 1px solid #989eac;
+      border-radius: 20px;
+      font-size: 16px;
+      color: #1c122c;
+      transition: border-color 0.3s ease;
+      outline: none;
+      box-sizing: border-box;
+  
+      &::placeholder {
+        color: #989eac;
+      }
+  
+      &:focus {
+        border-color: #000;
+      }
+    }
+  
+    &__password-toggle {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #989eac;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #000;
+      }
+  
+      &:focus {
+        outline: none;
+      }
+  
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  
+    &--focused {
+      .input-field__input {
+        border-color: #000;
+      }
+    }
+  }
+  
