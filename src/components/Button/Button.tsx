@@ -8,7 +8,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     children: React.ReactNode
   }
   
-  const CustomButton = forwardRef<HTMLButtonElement, ButtonProps>(({ className, children, ...props }, ref) => {
+  const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, children, ...props }, ref) => {
     return (
       <button ref={ref} className={`custom-button ${className}`} {...props}>
         {children}
@@ -16,7 +16,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     )
   })
   
-  CustomButton.displayName = "CustomButton"
+  Button.displayName = "Button"
   
-  export { CustomButton }
+  export { Button }
 

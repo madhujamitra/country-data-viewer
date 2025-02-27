@@ -1,6 +1,6 @@
 //import { InputField } from '../components/Input/Input'
 //import { SearchInput } from '../components/Search/SearchInput'
-//import { CustomButton } from '../components/Button/Button'
+import { Button } from '../components/Button/Button'
 import { ListItem } from "@/components/ListItem/ListItem";
 
 const sampleCountries = [
@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       {/* <SearchInput /> */}
       {/* <InputField /> */}
-      {/* <CustomButton>Click Me</CustomButton> */}
+      <Button>Click Me</Button>
       
       {sampleCountries.map((country) => (
         <ListItem
