@@ -6,15 +6,11 @@
   align-items: center;
   height: 100vh;
 
-
-
-
-
   &__container {
     display: flex;
     width: 98%;
     height: 98%;
-    background:$white;
+    background: $white;
     border-radius: 40px;
     box-shadow: 0px 10px 30px rgba(0, 3, 21, 0.1);
     overflow: hidden;
@@ -23,63 +19,53 @@
 
   &__left {
     flex: 1;
-    padding: 48px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    align-items: center;
     border-radius: 40px;
     padding: 56px 64px;
     gap: 32px;
-    align-items: center;
 
     &-container {
       width: 544px;
       display: flex;
       flex-direction: column;
       gap: 32px;
-
-
-
     }
 
-
     h1 {
-
       color: $primary-dark;
       font-weight: 600;
       font-size: 32px;
-      margin-bottom: 0px;
+      margin-bottom: 0;
     }
 
     span {
       font-size: 16px;
       color: $gray-dark;
-      //margin-bottom: 24px;
     }
 
     .login-page__social-buttons {
       display: flex;
       gap: 12px;
-      color:$gray-medium;
-      
+      color: $gray-medium;
     }
 
     .login-page__divider {
-      Width:544px;
-      border: 0.5px solid #9B9EAC;
-
+      width: 544px;
+      border: 0.5px solid $gray-medium;
     }
 
-    .login-page__form{
+    .login-page__form {
       display: flex;
-      gap: 32px;
       flex-direction: column;
+      gap: 32px;
     }
 
     .login-page__signup {
       color: $primary-light;
-      opacity: 80%;
+      opacity: 0.8;
       text-align: left;
       font-weight: 400;
       font-size: 16px;
@@ -104,103 +90,86 @@
 
   &__gradient {
     position: absolute;
-    inset: 0; // top: 0; right: 0; bottom: 0; left: 0;
+    inset: 0;
     border-radius: 40px;
-    background: linear-gradient(90.66deg, #6700E9 11.53%, #D83AFF 229.96%);
+    background: linear-gradient(90.66deg, $accent-start 11.53%, $accent-end 229.96%);
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     padding: 35px;
-    //filter: drop-shadow(0px 40px 100px rgba(0, 0, 0, 0.3));
   }
 
   &__content {
-    // Replaces: "absolute left-16 top-[123px] flex flex-col gap-10 max-w-[651px]"
-    //position: absolute;
-
-    // top: 123px;
     padding-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem; // gap-10 => 40px
+    gap: 2.5rem;
     max-width: 651px;
   }
 
   &__title {
-    // Typography styles
     font-size: 36px;
     font-weight: 600;
-    color: #ffffff;
+    color: $white;
     margin: 0;
-
-    // New properties
     leading-trim: both;
     text-edge: cap;
-
-    // Flex properties for auto layout
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
   }
-
 
   &__description {
     font-size: 20px;
     line-height: 26px;
     font-weight: 400;
-    color: #ffffff;
-
+    color: $white;
     margin: 0;
+  }
+
+  &__image-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    min-height: 400px;
   }
 
   &__image {
     position: absolute;
-
+    width: 90%;
+    height: 90%;
+    pointer-events: none;
     filter: drop-shadow(0px 40px 100px rgba(0, 0, 0, 0.3));
-    background-repeat: no-repeat;
-    background-size: cover;
 
-
+    &-el {
+      position: relative !important;
+      height: auto !important;
+    }
 
     &--first {
-      position: relative;
-      aspect-ratio: 550/309;
-      max-width: 550px;
-      left: 0rem;
-      top: 112px;
-      width: 100%;
-      height: 100%;
-
-
-
+      z-index: 1;
+      transform: translate(-50px, 12px);
     }
 
     &--second {
-      aspect-ratio: 550/309;
-      max-width: 550px;
-      position: absolute;
-      left: 140px;
-      top: 240px;
-      width: 100%;
-      height: 100%;
-      // aspect-ratio: 550/309; 
-      // width: 100%;
-      // height: 309px;
-      // left: 258px;
-      // top: 627px;
-    }
-
-    &-el {
-      // Replaces: "rounded-2xl bg-white/90 backdrop-blur-lg"
-      //border-radius: 1rem; // ~ rounded-2xl
-      //backdrop-filter: blur(20px); // ~ backdrop-blur-lg
-      // The width/height is controlled by the <Image> props in the TSX
+      z-index: 1;
+      transform: translate(100px, 160px);
     }
   }
 }
 
-@media (max-width: 768px) {
+/* ✅ Hide the right-side background for tablets and mobile */
+@media (max-width: 798px) {
   .login-page__right {
     display: none;
+  }
+}
+
+@media (max-width: 1204px) {
+  .login-page__image {
+    &--first {
+      z-index: 1;
+      transform: translate(0rem, 0.75rem); // 12px = 0.75rem
+    }
+    &--second {
+      transform: translate(1.875rem, 4.375rem); // 30px = 1.875rem, 70px = 4.375rem
+    }
   }
 }
