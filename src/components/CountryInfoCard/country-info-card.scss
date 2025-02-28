@@ -1,21 +1,23 @@
+
+@import "../../styles/utils/variables";
 .country-info-card {
-    /* Tailwind Equivalents: "rounded-2xl bg-white p-6 shadow-sm" */
+   
     border-radius: 1rem;            // rounded-2xl => 1rem
-    background-color: #ffffff;      // bg-white
-    padding: 1.5rem;                // p-6 => 1.5rem
+    background-color: $white;      // bg-white
+    padding: 24px;                // p-6 => 1.5rem
     box-shadow: 0 1px 2px rgba(0,0,0,0.05); // shadow-sm
   
     &__label {
-      /* Tailwind: "text-sm text-gray-500" */
+
       font-size: 0.875rem; // text-sm
-      color: #6b7280;      // text-gray-500
+      color: $gray-dark;      // text-gray-500
     }
   
     &__value {
       /* Tailwind: "mt-2 text-xl font-medium text-gray-900" */
-      margin-top: 0.5rem;  // mt-2 => 8px
-      font-size: 1.25rem;  // text-xl => ~20px
+      //margin-top: 0.5rem;  // mt-2 => 8px
+      font-size:32px;  // text-xl => ~20px
       font-weight: 500;    // font-medium
-      color: #111827;      // text-gray-900
+      color:$primary-light;      // text-gray-900
     }
   }

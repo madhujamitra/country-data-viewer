@@ -1,5 +1,7 @@
 // app/country/page.tsx (for example)
 
+
+
 import React from "react"
 import Image from "next/image"
 import { Map } from "lucide-react"
@@ -14,11 +16,11 @@ import "../../../styles/pages/country-page.scss"
 export default async function CountryPage({
   params,
 }: {
-  params: { country: string }
+  params: Promise<{ country: string }>
 }) {
+  const resolvedParams = await params;
+  const countryName = decodeURIComponent(resolvedParams.country);
 
-  const countryName = params.country
-  console.log(countryName);
   // 1) Fetch the data from the service
   const results: Country[] = await getCountriesByName(countryName)
   if (!results || !results.length) {
@@ -35,8 +37,8 @@ export default async function CountryPage({
     flag: country.flags?.svg || "",
     population: country.population?.toLocaleString() || "Unknown",
     capital: country.capital?.[0] || "Unknown",
-    language: "N/A", // If you want, parse the languages object 
-    currency: "N/A", // If you want, parse currencies
+    language: Object.values(country.languages || {})[0] || "N/A",
+    currency: Object.values(country.currencies || {})[0]?.name || "N/A",
   }
 
   // 4) A user object for your Sidebar
@@ -56,6 +58,9 @@ export default async function CountryPage({
 
   return (
     <div className="country-page">
+            <div className="country-page__background country-page__background--bg" />
+      <div className="country-page__background country-page__background--light" />
+
       {/* Sidebar */}
       <Sidebar user={user} items={navigationItems} />
 
@@ -70,8 +75,10 @@ export default async function CountryPage({
 
           {/* Grid of Info Cards */}
           <div className="country-page__grid">
+
             <CountryInfoCard
               label="Country Flag"
+              
               value={
                 <div className="country-page__flag">
                   <Image
@@ -84,8 +91,9 @@ export default async function CountryPage({
               }
             />
             <CountryInfoCard label="Population" value={countryData.population} />
-            <CountryInfoCard label="Capital" value={countryData.capital} />
+          
             <CountryInfoCard label="Language" value={countryData.language} />
+            <CountryInfoCard label="Capital" value={countryData.capital} />
             <CountryInfoCard label="Currency" value={countryData.currency} />
           </div>
         </div>

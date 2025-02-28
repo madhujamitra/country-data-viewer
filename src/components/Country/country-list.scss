@@ -1,61 +1,68 @@
+@import "../../styles/utils/variables";
+
 .country-list {
-    /* Matches: "rounded-3xl bg-white p-6 shadow-sm" */
-    border-radius: 1.5rem;          // rounded-3xl => 24px
-  // bg-white
-    padding: 1.5rem;                // p-6 => 24px
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); // shadow-sm
-  
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    overflow: hidden;
+    height: calc(100vh - 12rem);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+
     &__header-row {
-      /* Matches: "mb-4 grid grid-cols-3 gap-4 px-4 text-sm font-medium text-gray-500" */
-      margin-bottom: 1rem;         // mb-4 => 16px
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;                   // gap-4 => 16px
-      padding: 0 1rem;            // px-4 => 16px left/right
-      font-size: 0.875rem;        // text-sm => ~14px
-      font-weight: 500;           // font-medium
-      color: #6b7280;             // text-gray-500
+        margin-bottom: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        padding: 0 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
     }
-  
+
     &__header-cell {
-      // Additional styling for each header cell if needed
+        color: $gray-medium;
+        font-size: 0.875rem;
+        font-weight: 400;
     }
-  
+
     &__rows {
-      /* Matches: "space-y-2" => vertical gap between rows */
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem; // 2 => 8px
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
     }
-  
+
     &__row {
-      /* Matches: "grid grid-cols-3 gap-4 rounded-xl bg-white p-4 shadow-sm" */
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;                   // gap-4 => 16px
-      border-radius: 0.75rem;      // rounded-xl => 12px
-      background-color: #ffffff;   // bg-white
-      padding: 1rem;               // p-4 => 16px
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); // shadow-sm
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        border-radius: 0.75rem;
+        background-color: $white;
+        padding: 1rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
-  
+
     &__cell {
-      /* Matches: "flex items-center text-gray-900" */
-      display: flex;
-      align-items: center;
-      color: #111827; // text-gray-900
+        display: flex;
+        align-items: center;
     }
-    &__flag{
-      border-radius: 9999px; // circle
-      object-fit: cover; 
+
+    &__flag {
+        border-radius: 9999px;
+        object-fit: cover;
     }
-  
+
     &__identifier-avatar {
-      /* Matches: "h-10 w-10 rounded-full bg-gray-100" */
-      width: 2.5rem;         // w-10 => 40px
-      height: 2.5rem;        // h-10 => 40px
-      border-radius: 9999px; // rounded-full
-      background-color: #f3f4f6; // bg-gray-100
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 9999px;
+        background-color: $gray-dark;
     }
-  }
-  
+}

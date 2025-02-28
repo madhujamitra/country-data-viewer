@@ -1,6 +1,11 @@
 // src/services/countryService.ts
-
+export interface CurrencyDetails {
+  name: string;
+  symbol: string;
+}
 export interface Country {
+    currencies: Record<string, CurrencyDetails>;
+    languages: string
     name: {
       common: string
       official: string

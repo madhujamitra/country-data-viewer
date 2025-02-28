@@ -108,7 +108,7 @@ export default function CountriesPage() {
             <SearchInput
               value={searchQuery}
               onSearch={(val) => setSearchQuery(val)}
-              placeholder="Search countries"
+              placeholder="Search"
             />
           </div>
 

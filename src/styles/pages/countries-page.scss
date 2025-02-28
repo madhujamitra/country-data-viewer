@@ -1,12 +1,18 @@
 @import "../../styles/utils/variables";
 
 .countries-page {
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+ 
 
   &__main {
-    margin-left: 16.25rem; // 260px
-    padding: 2rem;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 16.25rem; // 260px
+    padding: 1rem;
+    overflow: hidden;
 
     @media (max-width: $breakpoint-tablet) {
       margin-left: 0;
@@ -18,8 +24,12 @@
   }
 
   &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     max-width: 72rem;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   &__header {
