@@ -1,23 +1,45 @@
+// app/country/page.tsx (for example)
+
 import React from "react"
 import Image from "next/image"
 import { Map } from "lucide-react"
+import { getCountriesByName, Country } from "@/services/countryService"
+import { notFound } from "next/navigation"
 
 import { Sidebar } from "@/components/SideBar/SideBar"
 import { CountryInfoCard } from "@/components/CountryInfoCard/country-info-card"
 
 import "../../../styles/pages/country-page.scss"
-// This would typically come from an API or database
-const countryData = {
-  name: "China",
-  description: "A short description about China",
-  flag: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
-  population: "1,411,000,000",
-  capital: "Beijing",
-  language: "Mandarin",
-  currency: "Chinese Yuan",
-}
 
-export default function CountryPage() {
+export default async function CountryPage({
+  params,
+}: {
+  params: { country: string }
+}) {
+
+  const countryName = params.country
+  console.log(countryName);
+  // 1) Fetch the data from the service
+  const results: Country[] = await getCountriesByName(countryName)
+  if (!results || !results.length) {
+    notFound() // Renders Next.js 404 page
+  }
+
+  // 2) Extract the first country from results
+  const country = results[0]
+
+  // 3) Prepare the data for display
+  const countryData = {
+    name: country.name.common,
+    description: `A short description about ${country.name.common}`,
+    flag: country.flags?.svg || "",
+    population: country.population?.toLocaleString() || "Unknown",
+    capital: country.capital?.[0] || "Unknown",
+    language: "N/A", // If you want, parse the languages object 
+    currency: "N/A", // If you want, parse currencies
+  }
+
+  // 4) A user object for your Sidebar
   const user = {
     name: "Brian Johnson",
     image: "/placeholder.svg?height=80&width=80",

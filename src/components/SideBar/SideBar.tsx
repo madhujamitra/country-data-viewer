@@ -2,9 +2,10 @@
 
 import React from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { LogOut } from "lucide-react"
-import "./sidebar.scss" // <-- Import the SCSS file
+import "./sidebar.scss"
+import { logout } from "@/services/authService"
 
 type SidebarProps = {
   className?: string
@@ -22,6 +23,12 @@ type SidebarProps = {
 
 export function Sidebar({ className, user, items = [] }: SidebarProps) {
   const pathname = usePathname()
+  const router = useRouter()   // from next/navigation
+
+  function handleLogout() {
+    logout()
+    router.push("/login")
+  }
 
   return (
     <div className={`sidebar ${className || ""}`}>
@@ -29,8 +36,7 @@ export function Sidebar({ className, user, items = [] }: SidebarProps) {
       {user && (
         <>
           <div className="sidebar__profile">
-            {/* If you need an avatar, place it here, e.g.:
-                <img src={user.image} alt={user.name} className="sidebar__avatar" /> */}
+            {/* If you need an avatar, place it here */}
             <div className="sidebar__profile-info">
               <span className="sidebar__profile-name">{user.name}</span>
               <Link href="/profile/edit" className="sidebar__profile-edit">
@@ -66,12 +72,12 @@ export function Sidebar({ className, user, items = [] }: SidebarProps) {
       {/* Logout section */}
       <div className="sidebar__logout">
         <div className="sidebar__divider" />
-        <Link href="/logout" className="sidebar__logout-link">
+        <div onClick={handleLogout} className="sidebar__logout-link">
           <div className="sidebar__logout-link-icon">
             <LogOut className="lucide-logout-icon" />
           </div>
           <span className="sidebar__logout-link-text">Logout</span>
-        </Link>
+        </div>
       </div>
     </div>
   )

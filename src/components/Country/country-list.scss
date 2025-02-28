@@ -45,6 +45,10 @@
       align-items: center;
       color: #111827; // text-gray-900
     }
+    &__flag{
+      border-radius: 9999px; // circle
+      object-fit: cover; 
+    }
   
     &__identifier-avatar {
       /* Matches: "h-10 w-10 rounded-full bg-gray-100" */

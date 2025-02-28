@@ -1,44 +1,66 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Map } from "lucide-react"
 
 import { Sidebar } from "@/components/SideBar/SideBar"
-//import { Dropdown } from "@/components/ui/dropdown"
+import { Dropdown } from "@/components/ui/Dropdown/Dropdown"
 import { SearchInput } from "@/components/ui/Search/SearchInput"
 import { CountryList } from "@/components/Country/country-list"
 
-import "../../styles/pages/countries-page.scss" // <-- Import the SCSS file
+import { getAllCountries, getAllRegions, Country } from "@/services/countryService"
 
-// Sample data - in a real app this would come from an API
-const countries = [
-  { id: 1, name: "Romania", continent: "Europe", flag: "/placeholder.svg" },
-  { id: 2, name: "Russia", continent: "Europe/Asia", flag: "/placeholder.svg" },
-  { id: 3, name: "Rwanda", continent: "Africa", flag: "/placeholder.svg" },
-]
-
-const continents = [
-  "All Continents",
-  "Africa",
-  "Asia",
-  "Europe",
-  "North America",
-  "South America",
-  "Oceania",
-  "Antarctica",
-]
+import "../../styles/pages/countries-page.scss"
 
 export default function CountriesPage() {
   const [selectedContinent, setSelectedContinent] = useState("All Continents")
   const [searchQuery, setSearchQuery] = useState("")
 
-  // Filter countries based on search and continent
+  const [countries, setCountries] = useState<Country[]>([])
+  const [regions, setRegions] = useState<string[]>([])
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true)
+
+        // Fetch all countries
+        const fetchedCountries = await getAllCountries()
+        setCountries(fetchedCountries)
+
+        // Fetch all unique regions
+        const fetchedRegions = await getAllRegions()
+        // Insert "All Continents" at the top of the list
+        setRegions(["All Continents", ...fetchedRegions])
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message)
+        } else {
+          setError("Error fetching data")
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  // Filter countries based on search & region
   const filteredCountries = countries.filter((country) => {
-    const matchesSearch = country.name.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesContinent =
-      selectedContinent === "All Continents" || country.continent === selectedContinent
-    return matchesSearch && matchesContinent
+    const name = country.name.common.toLowerCase()
+    const matchesSearch = name.includes(searchQuery.toLowerCase())
+
+    const isAll = selectedContinent === "All Continents"
+    const matchesRegion = isAll || country.region === selectedContinent
+
+    return matchesSearch && matchesRegion
   })
+
+  if (error) return <div style={{ color: "red" }}>Error: {error}</div>
+  if (loading) return <div>Loading...</div>
 
   return (
     <div className="countries-page">
@@ -69,20 +91,27 @@ export default function CountriesPage() {
 
           {/* Filters */}
           <div className="countries-page__filters">
-            {/* <Dropdown
-              options={continents}
+            <Dropdown
+              options={regions}
               value={selectedContinent}
               onChange={setSelectedContinent}
-            /> */}
+            />
             <SearchInput
               value={searchQuery}
-              onChange={setSearchQuery}
+           onSearch={(val) => setSearchQuery(val)}
               placeholder="Search countries"
             />
           </div>
 
           {/* Countries List */}
-          <CountryList countries={filteredCountries} />
+          <CountryList
+            countries={filteredCountries.map((country, idx) => ({
+              id: idx,
+              name: country.name.common,
+              continent: country.region,
+              flag: country.flags?.svg || "",
+            }))}
+          />
         </div>
       </main>
     </div>

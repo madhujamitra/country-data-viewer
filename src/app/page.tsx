@@ -1,32 +1,25 @@
-//import { InputField } from '../components/Input/Input'
-//import { SearchInput } from '../components/Search/SearchInput'
+"use client"
 
+import React, { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { isLoggedIn } from "@/services/authService"
 
-// const sampleCountries = [
-//   { id: "1", name: "Canada", continent: "North America", flag: "https://flagcdn.com/ca.svg" },
-//   { id: "2", name: "France", continent: "Europe", flag: "https://flagcdn.com/fr.svg" },
-//   { id: "3", name: "Japan", continent: "Asia", flag: "https://flagcdn.com/jp.svg" },
-// ];
+export default function SomeProtectedPage() {
+  const router = useRouter()
 
-export default function Home() {
-
+  useEffect(() => {
+    // If not logged in, redirect to /login
+    if (!isLoggedIn()) {
+      router.replace("/login")
+    }
+  }, [router])
 
   return (
     <div>
-      {/* <SearchInput /> */}
-      {/* <InputField /> */}
-      {/* <Button>Click Me</Button>
-      
-      {sampleCountries.map((country) => (
-        <ListItem
-          key={country.id}
-          id={country.id}
-          title={country.name}
-          subtitle={country.continent}
-          iconUrl={country.flag}
-        /> */}
-      {/* ))} */}
-
+      {/* Actual page content here. 
+         If user is not logged in, we redirect above */}
+      <h1>Protected Content</h1>
     </div>
-  );
+  )
 }
+
