@@ -9,7 +9,7 @@ export interface Country {
     name: {
       common: string
       official: string
-      // ...and any additional fields you need
+   
     }
     population: number
     region: string
@@ -18,7 +18,7 @@ export interface Country {
       svg?: string
       png?: string
     }
-    // etc. – adjust as needed
+
   }
   
   /**
@@ -90,17 +90,17 @@ export interface Country {
     try {
       const countries = await getAllCountries()
   
-      // Use a Set to collect unique region names
+
       const regionSet = new Set<string>()
   
       for (const country of countries) {
-        // Some countries have `""` (empty) or unexpected region fields
+   
         if (country.region) {
           regionSet.add(country.region)
         }
       }
   
-      // Convert to array, sorted alphabetically
+  
       const uniqueRegions = Array.from(regionSet).sort()
   
       return uniqueRegions

@@ -1,49 +1,46 @@
 @import "../../../styles/utils/variables";
 
 .search-input {
-    position: relative;
-    width: 100%;
-    max-width: 280px;
-    border-radius: 25px; 
-    box-shadow: 0px 6px 12px rgba(142, 152, 157, 0.08); 
-    backdrop-filter: blur(10px);
-    
-    &__icon {
-      position: absolute;
-      left: 16px; 
-      top: 50%;
-      transform: translateY(-50%);
-      color:$gray-medium;
-    }
-  
-    &__input {
-      width: 100%;
-      height: 100%;
-      padding: 16px;
-      padding-left: 44px;
-      border: 1px solid $white;
-      border-radius: 25px;
-      font-size: 16px;
-      color: $primary-light;
-      transition: border-color 0.3s ease;
-      outline: none;
- 
-  
-      &::placeholder {
-        color: $gray-medium;
-      }
-  
-      &:focus {
-        border-color: $gray-light;
-      }
-    }
-  
-    &--focused {
-      .search-input__input {
-        box-shadow: 0px 6px 12px rgba(142, 152, 157, 0.08); 
-        color: $primary-light;
-      }
+  position: relative;
+  width: 100%;
+  max-width: 17.5rem;
+  border-radius: 1.5625rem;
+  box-shadow: 0rem 0.375rem 0.75rem rgba(142, 152, 157, 0.08);
+  backdrop-filter: blur(0.625rem);
 
+  &__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $gray-medium;
+  }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    padding-left: 2.75rem;
+    border: 0.0625rem solid $white;
+    border-radius: 1.5625rem;
+    font-size: 1rem;
+    color: $primary-light;
+    transition: border-color 0.3s ease;
+    outline: none;
+
+    &::placeholder {
+      color: $gray-medium;
+    }
+
+    &:focus {
+      border-color: $gray-light;
     }
   }
-  
+
+  &--focused {
+    .search-input__input {
+      box-shadow: 0rem 0.375rem 0.75rem rgba(142, 152, 157, 0.08);
+      color: $primary-light;
+    }
+  }
+}

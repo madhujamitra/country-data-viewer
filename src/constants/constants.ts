@@ -11,7 +11,7 @@ export const LOGIN_TEXT = {
       loginButton: "Log In",
       loggingIn: "Logging in..."
     },
-    signup: "Don’t have an account? Sign in", // adjust as needed
+    signup: "Don’t have an account? Sign in", 
     gradient: {
       title: "The simplest way to track and manage your geographical data",
       description: "Enter your credentials and access your account"
@@ -27,3 +27,9 @@ export const LOGIN_TEXT = {
     placeholder: "/placeholder.svg"
   }
   
+
+
+export const ICONS = {
+  searchLight: "/icons/search-icon.svg",
+  searchDark: "/icons/search-icon-dark.svg",
+};
