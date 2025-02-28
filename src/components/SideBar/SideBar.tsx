@@ -1,11 +1,14 @@
 "use client"
 
-import React from "react"
+
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
-import { LogOut } from "lucide-react"
+import React, { useState } from "react"
 import "./sidebar.scss"
 import { logout } from "@/services/authService"
+import Image from "next/image";
+import { useRouter } from "next/navigation"; 
+
+
 
 type SidebarProps = {
   className?: string
@@ -22,7 +25,8 @@ type SidebarProps = {
 }
 
 export function Sidebar({ className, user, items = [] }: SidebarProps) {
-  const pathname = usePathname()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false) 
+
   const router = useRouter()   // from next/navigation
 
   function handleLogout() {
@@ -31,54 +35,78 @@ export function Sidebar({ className, user, items = [] }: SidebarProps) {
   }
 
   return (
-    <div className={`sidebar ${className || ""}`}>
+
+    <>
+
+<button className="sidebar-toggle" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+        ☰ Menu
+      </button>
+
+    <div className={`sidebar ${className || ""} ${isSidebarOpen ? "sidebar--active" : ""}`}>
+
+
       {/* User profile section */}
-      {user && (
-        <>
-          <div className="sidebar__profile">
-            {/* If you need an avatar, place it here */}
-            <div className="sidebar__profile-info">
-              <span className="sidebar__profile-name">{user.name}</span>
-              <Link href="/profile/edit" className="sidebar__profile-edit">
-                Edit Profile
-              </Link>
-            </div>
-          </div>
-          <div className="sidebar__divider" />
-        </>
-      )}
+
+
+{user && (
+  <>
+    <div className="sidebar__divider" /> {/* Divider at the top */}
+    <div className="sidebar__profile">
+      {/* Profile Image */}
+      <div className="sidebar__profile-image">
+        <Image
+          src="/userImage.png"
+          alt="User Profile"
+          width={50}
+          height={50}
+          className="sidebar__profile-img"
+        />
+      </div>
+
+      {/* Profile Info */}
+      <div className="sidebar__profile-info">
+        <span className="sidebar__profile-name">{user.name}</span>
+       
+         < span  className="sidebar__profile-edit">Edit Profile</span>
+
+      </div>
+    </div>
+    <div className="sidebar__divider" /> {/* Divider at the bottom */}
+  </>
+)}
 
       {/* Navigation items */}
       <div className="sidebar__nav">
         {items.map((item, index) => {
-          const isActive = pathname === item.href ? "sidebar__nav-item--active" : ""
+         
           return (
-            <Link
-              key={index}
-              href={item.href}
-              className={`sidebar__nav-item ${isActive}`}
-            >
-              <div className="sidebar__nav-item-icon">
-                {item.icon}
-              </div>
-              <span className="sidebar__nav-item-title">
-                {item.title}
-              </span>
-            </Link>
+            <Link key={index} href={item.href} className="sidebar__nav-item">
+            <div className="sidebar__nav-item-icon">
+              <Image src="/icons/map.svg"   alt="Map Icon" width={24} height={24} />
+            </div>
+            <span className="sidebar__nav-item-title">{item.title}</span>
+          </Link>
           )
         })}
       </div>
 
       {/* Logout section */}
       <div className="sidebar__logout">
-        <div className="sidebar__divider" />
-        <div onClick={handleLogout} className="sidebar__logout-link">
-          <div className="sidebar__logout-link-icon">
-            <LogOut className="lucide-logout-icon" />
-          </div>
-          <span className="sidebar__logout-link-text">Logout</span>
-        </div>
-      </div>
+  <div className="sidebar__divider" />
+  <div onClick={handleLogout} className="sidebar__logout-link">
+    <div className="sidebar__logout-link-icon">
+      <Image
+        src="/icons/logout.svg"
+        alt="Logout Icon"
+        width={24}
+        height={24}
+        className="sidebar__logout-img"
+      />
     </div>
+    <span className="sidebar__logout-link-text">Logout</span>
+  </div>
+</div>
+    </div>
+    </>
   )
 }

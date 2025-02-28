@@ -1,145 +1,215 @@
+@import "../../styles/utils/variables";
+
 .sidebar {
-    // Replaces: "fixed left-0 top-0 flex h-screen w-[260px] flex-col bg-white/80 backdrop-blur-[20px] rounded-[32px]"
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
     flex-direction: column;
     width: 260px;
-    height: 100vh; /* Full screen height */
+    height: 100vh;
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
     border-radius: 32px;
-    /* If you have a global box-sizing rule, you're good;
-       otherwise, consider adding box-sizing: border-box here. */
+    padding: 44px 30px;
+    transition: transform 0.3s ease-in-out;
+   margin:10px;
+  
+    
+    @media (max-width: $breakpoint-tablet) { 
+        left: auto;  
+        right: 0;   
+        transform: translateX(100%); 
+    }
+
   
     &__profile {
-      /* Replaces: "flex items-center gap-3 p-6 mb-2" */
-      display: flex;
-      align-items: center;
-      gap: 12px; /* Tailwind gap-3 => 12px */
-      padding: 24px; /* p-6 => 24px */
-      margin-bottom: 8px; /* mb-2 => 8px */
-  
-      &-info {
-        display: flex;
-        flex-direction: column;
-      }
-  
-      &-name {
-        font-size: 1rem; /* text-base */
-        font-weight: 500; /* font-medium */
-        color: #4b5563; /* text-gray-700 */
-      }
-  
-      &-edit {
-        font-size: 0.875rem; /* text-sm */
-        color: #6b7280; /* text-gray-500 */
-        text-decoration: none;
-  
-        &:hover {
-          color: #111827; /* text-gray-900 */
-        }
-      }
-    }
-  
-    &__divider {
-      /* Replaces: "mx-4 h-px bg-gray-200" */
-      margin: 0 16px;  /* mx-4 => 16px left/right */
-      height: 1px;     /* h-px => 1px */
-      background-color: #e5e7eb; /* bg-gray-200 */
-    }
-  
-    &__nav {
-      /* Replaces: "flex-1 px-4 py-6" + "flex flex-col space-y-2" */
-      flex: 1;
-      padding: 24px 16px; /* px-4 => 16px, py-6 => 24px top/bottom */
-      display: flex;
-      flex-direction: column;
-      gap: 8px; /* space-y-2 => 8px */
-    }
-  
-    &__nav-item {
-      /* Replaces: "flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100/60" */
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: #4b5563; /* text-gray-700 by default */
-  
-      &:hover {
-        background-color: rgba(243, 244, 246, 0.6); /* hover:bg-gray-100/60 */
-      }
-  
-      &--active {
-        /* Replaces: "pathname === item.href && 'bg-gray-100/60'" */
-        background-color: rgba(243, 244, 246, 0.6);
-      }
-  
-      &-icon {
-        /* Replaces: "flex h-10 w-10 items-center justify-center rounded-full bg-purple-900 text-white" */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 40px; /* h-10 => 40px */
-        width: 40px;  /* w-10 => 40px */
-        border-radius: 9999px; /* "rounded-full" */
-        background-color: #4c1d95; /* "bg-purple-900" */
-        color: #ffffff; /* text-white */
-      }
-  
-      &-title {
-        /* Replaces: "text-base font-medium text-gray-700" */
-        font-size: 1rem;
-        font-weight: 500;
-        color: #4b5563;
-      }
-    }
-  
-    &__logout {
-      /* Replaces: "mt-auto px-4 pb-6" */
-      margin-top: auto;
-      padding: 0 16px 24px; /* px-4 => 16px left/right, pb-6 => 24px bottom */
-  
-      .sidebar__divider {
-        margin-bottom: 24px; /* mb-6 => 24px */
-        margin-left: 0;
-        margin-right: 0;
-      }
-  
-      &-link {
-        /* Replaces: "flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100/60" */
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 12px;
+        padding: 24px;
+        margin-bottom: 8px;
+
+        &-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        &-edit {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-decoration: none;
+
+            &:hover {
+                color: #111827;
+            }
+        }
+    }
+
+    &__divider {
+        margin: 0 16px;
+        height: 1px;
+        background-color: #e5e7eb;
+    }
+
+    &__nav {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
         border-radius: 12px;
         text-decoration: none;
-  
+        color: #4b5563;
+
         &:hover {
-          background-color: rgba(243, 244, 246, 0.6);
+            background-color: rgba(243, 244, 246, 0.6);
         }
-  
+
         &-icon {
-          /* Replaces: "flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500" */
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 40px;
-          width: 40px;
-          border-radius: 9999px; /* full circle */
-          background-color: #f3f4f6; /* bg-gray-100 */
-          color: #6b7280;          /* text-gray-500 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 40px;
+            border-radius: 9999px;
+            background-color: $primary-back;
+
+            img {
+                width: 24px;
+                height: 24px;
+                filter: invert(1);
+            }
         }
-  
-        &-text {
-          font-size: 1rem;  /* text-base */
-          font-weight: 500; /* font-medium */
-          color: #4b5563;   /* text-gray-700 */
+
+        &-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #4b5563;
         }
-      }
     }
-  }
-  
+
+    &__logout {
+        margin-top: auto;
+
+        .sidebar__divider {
+            margin-bottom: 24px;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        &-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+
+            &:hover {
+                background-color: rgba(243, 244, 246, 0.6);
+            }
+
+            &-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 40px;
+                width: 40px;
+                border-radius: 9999px;
+                background-color: #f3f4f6;
+                color: #6b7280;
+            }
+
+            &-text {
+                font-size: 1rem;
+                font-weight: 500;
+                color: #4b5563;
+            }
+        }
+    }
+}
+
+.sidebar__divider {
+    margin: 24px 16px;
+    width: 100%;
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 10px 0;
+}
+
+.sidebar__profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.sidebar__profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar__profile-img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sidebar__profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar__profile-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
+.sidebar__profile-edit {
+    font-size: 14px;
+    color: #6b7280;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.sidebar--active {
+  transform: translateX(0);
+}
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 2rem; 
+    right: 1.25rem; 
+    background: $primary-back;
+    color: $white;
+    border: none;
+    padding: 0.625rem 0.9375rem;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    cursor: pointer;
+    z-index: 1000;
+
+    @media (max-width: $breakpoint-tablet) { 
+        display: block;
+    }
+}

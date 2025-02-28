@@ -1,24 +1,24 @@
-@import "../utils/_variables.scss";
+@import "../utils/variables";
 
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  height:100vh ;
+  height: 100vh;
 
 
-  
 
-  
+
+
   &__container {
     display: flex;
     width: 98%;
     height: 98%;
-    background: white;
+    background:$white;
     border-radius: 40px;
     box-shadow: 0px 10px 30px rgba(0, 3, 21, 0.1);
     overflow: hidden;
-    padding:24px;
+    padding: 24px;
   }
 
   &__left {
@@ -27,21 +27,33 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-   
+
     border-radius: 40px;
-    width: 544px;
-height: 556px;
-  
+    padding: 56px 64px;
+    gap: 32px;
+    align-items: center;
 
-    h2 {
+    &-container {
+      width: 544px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
 
-      color: $primary-dark;
-      height: 42px;
-      font-weight: bold;
+
+
     }
 
-    p {
-        font-size: 16px;
+
+    h1 {
+
+      color: $primary-dark;
+      font-weight: 600;
+      font-size: 32px;
+      margin-bottom: 0px;
+    }
+
+    span {
+      font-size: 16px;
       color: $gray-dark;
       //margin-bottom: 24px;
     }
@@ -49,25 +61,34 @@ height: 556px;
     .login-page__social-buttons {
       display: flex;
       gap: 12px;
-      margin-bottom: 16px;
+      color:$gray-medium;
+      
     }
 
-    .login-page__input {
-      margin-bottom: 16px;
+    .login-page__divider {
+      Width:544px;
+      border: 0.5px solid #9B9EAC;
+
     }
 
-    .login-page__button {
-      margin-top: 8px;
+    .login-page__form{
+      display: flex;
+      gap: 32px;
+      flex-direction: column;
     }
 
     .login-page__signup {
-      margin-top: 12px;
-      text-align: center;
+      color: $primary-light;
+      opacity: 80%;
+      text-align: left;
+      font-weight: 400;
+      font-size: 16px;
 
       a {
-       color: black;
-        font-weight: bold;
+        color: $primary-light;
+        font-weight: $font-weight-semi-bold;
         text-decoration: none;
+        font-size: 16px;
 
         &:hover {
           text-decoration: underline;
@@ -88,16 +109,16 @@ height: 556px;
     background: linear-gradient(90.66deg, #6700E9 11.53%, #D83AFF 229.96%);
     display: flex;
     flex-direction: column;
- padding: 35px;
- //filter: drop-shadow(0px 40px 100px rgba(0, 0, 0, 0.3));
+    padding: 35px;
+    //filter: drop-shadow(0px 40px 100px rgba(0, 0, 0, 0.3));
   }
 
   &__content {
     // Replaces: "absolute left-16 top-[123px] flex flex-col gap-10 max-w-[651px]"
     //position: absolute;
- 
-   // top: 123px;
-   padding-top:20px;
+
+    // top: 123px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 2.5rem; // gap-10 => 40px
@@ -110,25 +131,25 @@ height: 556px;
     font-weight: 600;
     color: #ffffff;
     margin: 0;
-  
+
     // New properties
     leading-trim: both;
     text-edge: cap;
-  
+
     // Flex properties for auto layout
     flex: none;
     order: 0;
     align-self: stretch;
     flex-grow: 0;
   }
-  
+
 
   &__description {
     font-size: 20px;
     line-height: 26px;
     font-weight: 400;
     color: #ffffff;
- 
+
     margin: 0;
   }
 
@@ -137,25 +158,25 @@ height: 556px;
 
     filter: drop-shadow(0px 40px 100px rgba(0, 0, 0, 0.3));
     background-repeat: no-repeat;
-    background-size: cover;  
-  
+    background-size: cover;
+
 
 
     &--first {
-   position: relative;
-   aspect-ratio: 550/309; 
-   max-width: 550px;
-      left: 0rem;  
+      position: relative;
+      aspect-ratio: 550/309;
+      max-width: 550px;
+      left: 0rem;
       top: 112px;
       width: 100%;
       height: 100%;
-    
 
-  
+
+
     }
 
     &--second {
-      aspect-ratio: 550/309; 
+      aspect-ratio: 550/309;
       max-width: 550px;
       position: absolute;
       left: 140px;
@@ -175,5 +196,11 @@ height: 556px;
       //backdrop-filter: blur(20px); // ~ backdrop-blur-lg
       // The width/height is controlled by the <Image> props in the TSX
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .login-page__right {
+    display: none;
   }
 }

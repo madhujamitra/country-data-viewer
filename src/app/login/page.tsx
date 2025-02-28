@@ -2,8 +2,7 @@
 
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
-
-import { login } from "@/services/authService" // <-- your mock login function
+import { login } from "@/services/authService" 
 import { InputField } from "@/components/ui/Input/Input"
 import { Button } from "@/components/ui/Button/Button"
 import Image from "next/image"
@@ -32,8 +31,9 @@ export default function Login() {
       <div className="login-page__container">
         {/* Left Section */}
         <div className="login-page__left">
+          <div className="login-page__left-container">
           <h1>Welcome Back!</h1>
-          <p>Learn all about the countries of the world</p>
+          <span>Learn all about the countries of the world</span>
 
           {/* Social Login Buttons */}
           <div className="login-page__social-buttons">
@@ -67,8 +67,10 @@ export default function Login() {
             </Button>
           </div>
 
+          <div className="login-page__divider"></div>
+
           {/* Login Form */}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="login-page__form">
             <div className="login-page__input">
               <InputField
                 type="email"
@@ -88,7 +90,7 @@ export default function Login() {
 
             {/* Login Button */}
             <div className="login-page__button">
-              <Button type="submit">Log In</Button>
+              <Button type="submit"  fullWidth>Log In</Button>
             </div>
 
             {/* Error Message */}
@@ -99,6 +101,8 @@ export default function Login() {
           <div className="login-page__signup">
             Don’t have an account? <a href="/signup">Sign in</a>
           </div>
+          </div>
+        
         </div>
 
         {/* Right Section */}

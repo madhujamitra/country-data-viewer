@@ -1,51 +1,76 @@
+@import "../../styles/utils/variables";
+
 .countries-page {
-  /* If your Sidebar is pinned (position: fixed; width: 260px),
-     we can offset the content by 260px. */
-  position: relative;
   min-height: 100vh;
-  background-color: #f9fafb; // ~bg-gray-50
 
   &__main {
-    /* Equivalent of "flex-1 p-8 ml-[260px]" */
-    margin-left: 260px; /* offset for pinned sidebar width */
-    padding: 2rem;      /* p-8 => 2rem */
+    margin-left: 16.25rem; // 260px
+    padding: 2rem;
     flex: 1;
+
+    @media (max-width: $breakpoint-tablet) {
+      margin-left: 0;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      margin-left: 0;
+    }
   }
 
   &__content {
-    /* Equivalent of "max-w-6xl" => 72rem, plus margin auto for centering */
     max-width: 72rem;
     margin: 0 auto;
   }
 
   &__header {
-    margin-bottom: 2rem; // mb-8
+    padding: 1.5rem;
   }
 
   &__title {
-    /* text-4xl => ~2.25rem, font-bold => 700 */
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: #111827; // text-gray-900
-    margin: 0;      // remove default <h1> top/bottom margin
+    font-size: 2.5rem; // 40px
+    font-weight: 600;
+    margin: 0;
   }
 
   &__description {
-    margin-top: 0.5rem; // mt-2 => 8px
-    color: #4b5563;     // text-gray-600
+    margin-top: 0.5rem;
+    color: $gray-dark;
+    font-size: 1rem; // 16px
+    font-weight: 400;
   }
 
   &__filters {
-    /* Equivalent of "mb-8 flex gap-4" */
     display: flex;
-    gap: 1rem;         // gap-4 => 16px
-    margin-bottom: 2rem; // mb-8 => 32px
+    gap: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+
+    &--bg {
+      background: url("/background-1.png") no-repeat center center;
+      mix-blend-mode: overlay;
+    }
+
+    &--light {
+      position: absolute;
+      transform: rotate(180deg);
+      background: url("/background-2.png") no-repeat center / cover;
+      mix-blend-mode: soft-light;
+      filter: blur(3.75rem); // 60px
+    }
   }
 }
 
-/* If needed, style the Lucide icon. 
-   For instance, "h-5 w-5 => 20px". */
+/* Lucide Icon Styling */
 .lucide-icon {
-  width: 1.25rem;  // 20px
-  height: 1.25rem; // 20px
+  width: 1.25rem;
+  height: 1.25rem;
 }
