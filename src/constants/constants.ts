@@ -33,3 +33,42 @@ export const ICONS = {
   searchLight: "/icons/search-icon.svg",
   searchDark: "/icons/search-icon-dark.svg",
 };
+
+export const COUNTRIES_PAGE_CONTENT = {
+  defaultContinent: "All Continents",
+  header: {
+    title: "Countries",
+    description: "A database of the countries of the world",
+  },
+  sidebar: {
+    user: {
+      name: "Brian Johnson",
+      image: "/placeholder.svg",
+      initials: "BJ",
+    },
+    items: [
+      {
+        title: "Countries",
+        href: "/countries",
+      },
+    ],
+  },
+  searchPlaceholder: "Search",
+};
+
+export const COUNTRY_PAGE_CONTENT = {
+  descriptionPrefix: "A short description about ",
+  sidebar: {
+    user: {
+      name: "Brian Johnson",
+      image: "/placeholder.svg?height=80&width=80",
+      initials: "BJ",
+    },
+    items: [
+      {
+        title: "Countries",
+        href: "/countries",
+      },
+    ],
+  },
+};

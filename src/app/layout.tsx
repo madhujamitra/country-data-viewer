@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import "./global.scss";
 import "../styles/utils/_variables.scss";
-import "../styles/utils/_mixins.scss";
+
 
 
 

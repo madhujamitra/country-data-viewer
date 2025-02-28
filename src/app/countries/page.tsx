@@ -14,10 +14,12 @@ import {
   Country,
 } from "@/services/countryService";
 
+import { COUNTRIES_PAGE_CONTENT } from "@/constants/constants";
+
 import "../../styles/pages/countries-page.scss";
 
 export default function CountriesPage() {
-  const [selectedContinent, setSelectedContinent] = useState("All Continents");
+  const [selectedContinent, setSelectedContinent] = useState(COUNTRIES_PAGE_CONTENT.defaultContinent);
   const [searchQuery, setSearchQuery] = useState("");
 
   const [countries, setCountries] = useState<Country[]>([]);
@@ -29,15 +31,10 @@ export default function CountriesPage() {
     async function fetchData() {
       try {
         setLoading(true);
-
-        // Fetch all countries
         const fetchedCountries = await getAllCountries();
         setCountries(fetchedCountries);
-
-        // Fetch all unique regions
         const fetchedRegions = await getAllRegions();
-        // Insert "All Continents" at the top of the list
-        setRegions(["All Continents", ...fetchedRegions]);
+        setRegions([COUNTRIES_PAGE_CONTENT.defaultContinent, ...fetchedRegions]);
       } catch (err: unknown) {
         if (err instanceof Error) {
           setError(err.message);
@@ -48,18 +45,14 @@ export default function CountriesPage() {
         setLoading(false);
       }
     }
-
     fetchData();
   }, []);
 
-  // Filter countries based on search & region
   const filteredCountries = countries.filter((country) => {
     const name = country.name.common.toLowerCase();
     const matchesSearch = name.includes(searchQuery.toLowerCase());
-
-    const isAll = selectedContinent === "All Continents";
+    const isAll = selectedContinent === COUNTRIES_PAGE_CONTENT.defaultContinent;
     const matchesRegion = isAll || country.region === selectedContinent;
-
     return matchesSearch && matchesRegion;
   });
 
@@ -73,15 +66,11 @@ export default function CountriesPage() {
 
       <aside>
         <Sidebar
-          user={{
-            name: "Brian Johnson",
-            image: "/placeholder.svg",
-            initials: "BJ",
-          }}
+          user={COUNTRIES_PAGE_CONTENT.sidebar.user}
           items={[
             {
-              title: "Countries",
-              href: "/countries",
+              title: COUNTRIES_PAGE_CONTENT.sidebar.items[0].title,
+              href: COUNTRIES_PAGE_CONTENT.sidebar.items[0].href,
               icon: <Map className="lucide-icon" />,
             },
           ]}
@@ -90,15 +79,13 @@ export default function CountriesPage() {
 
       <main className="countries-page__main">
         <div className="countries-page__content">
-          {/* Header */}
           <div className="countries-page__header">
-            <h1 className="countries-page__title">Countries</h1>
+            <h1 className="countries-page__title">{COUNTRIES_PAGE_CONTENT.header.title}</h1>
             <p className="countries-page__description">
-              A database of the countries of the world
+              {COUNTRIES_PAGE_CONTENT.header.description}
             </p>
           </div>
 
-          {/* Filters */}
           <div className="countries-page__filters">
             <Dropdown
               options={regions}
@@ -108,11 +95,10 @@ export default function CountriesPage() {
             <SearchInput
               value={searchQuery}
               onSearch={(val) => setSearchQuery(val)}
-              placeholder="Search"
+              placeholder={COUNTRIES_PAGE_CONTENT.searchPlaceholder}
             />
           </div>
 
-          {/* Countries List */}
           <CountryList
             countries={filteredCountries.map((country, idx) => ({
               id: idx,

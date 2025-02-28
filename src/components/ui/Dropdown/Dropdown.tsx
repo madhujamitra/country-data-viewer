@@ -1,9 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-
 import "./Dropdown.scss"
-
 import Image from "next/image";
 
 interface DropdownProps {
