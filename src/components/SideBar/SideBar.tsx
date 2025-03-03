@@ -3,7 +3,7 @@
 
 import Link from "next/link"
 import React, { useState } from "react"
-import "./Sidebar.scss"
+import "./SideBar.scss"
 import { logout } from "@/services/authService"
 import Image from "next/image";
 import { useRouter } from "next/navigation"; 
