@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react"
-import "./button.scss"
+import "./Button.scss"
 
 
 type Variant = "default" | "outline" | "social"
