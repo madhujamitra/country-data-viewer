@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
+import { useParams } from 'next/navigation'
 import Image from "next/image"
 import { Map } from "lucide-react"
 import { getCountriesByName, Country } from "@/services/countryService"
@@ -10,7 +11,7 @@ import { CountryInfoCard } from "@/components/CountryInfoCard/country-info-card"
 import { COUNTRY_PAGE_CONTENT } from "@/constants/constants"
 import "../../../styles/pages/country-page.scss"
 
-export default function CountryPage({ params }: { params: { country: string } }) {
+export default function CountryPage() {
   const [countryData, setCountryData] = useState<{
     name: string;
     description: string;
@@ -23,12 +24,14 @@ export default function CountryPage({ params }: { params: { country: string } })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
 
-  const countryName = decodeURIComponent(params.country)
+  const params = useParams() as { country: string };
+  console.log(params,"ghsdfjshdf");
 
+ 
   useEffect(() => {
     async function fetchCountry() {
       try {
-        const results: Country[] = await getCountriesByName(countryName)
+        const results: Country[] = await getCountriesByName(params.country)
         if (!results || !results.length) {
           setError("Country not found")
           return
@@ -54,7 +57,7 @@ export default function CountryPage({ params }: { params: { country: string } })
       }
     }
     fetchCountry()
-  }, [countryName])
+  }, [params])
 
   if (error) return <div style={{ color: "red" }}>Error: {error}</div>
   if (loading || !countryData) return <div>Loading...</div>
